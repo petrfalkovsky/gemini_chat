@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
+/// Виджет для отображения сообщения в чате.
+/// Widget to display a message in the chat.
 class MessageWidget extends StatelessWidget {
+  /// Конструктор для создания экземпляра [MessageWidget].
+  /// Constructor to create an instance of [MessageWidget].
   const MessageWidget({
     super.key,
     this.text,
     required this.isFromUser,
   });
 
+  /// Текст сообщения.
+  /// Message text.
   final String? text;
+
+  /// Флаг, определяющий, является ли сообщение от пользователя.
+  /// Flag determining if the message is from the user.
   final bool isFromUser;
 
   @override

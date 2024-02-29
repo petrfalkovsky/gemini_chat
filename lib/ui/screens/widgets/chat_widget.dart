@@ -6,9 +6,15 @@ import 'package:gemini_chat/ui/theme/color_constants.dart';
 import 'package:gemini_chat/view_models/chat_view_mode.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+/// Виджет чата.
+/// Chat widget.
 class ChatWidget extends StatefulWidget {
+  /// Конструктор для создания экземпляра [ChatWidget].
+  /// Constructor to create an instance of [ChatWidget].
   const ChatWidget({super.key, required this.chatViewModel});
 
+  /// [ChatViewModel] для управления чатом.
+  /// [ChatViewModel] for chat management.
   final ChatViewModel chatViewModel;
 
   @override
@@ -18,6 +24,7 @@ class ChatWidget extends StatefulWidget {
 class _ChatWidgetState extends State<ChatWidget> {
   late final GenerativeModel _model;
   late final ChatSession _chat;
+
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _textController = TextEditingController();
   final FocusNode _textFieldFocus = FocusNode();
@@ -32,6 +39,8 @@ class _ChatWidgetState extends State<ChatWidget> {
     _chat = widget.chatViewModel.chat;
   }
 
+  /// Прокрутка вниз в [ListView] для отображения новых сообщений.
+  /// Scroll down in the [ListView] to display new messages.
   void _scrollDown() {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => _scrollController.animateTo(
@@ -112,6 +121,8 @@ class _ChatWidgetState extends State<ChatWidget> {
     );
   }
 
+  /// Отправка сообщения в чат.
+  /// Sending a message to the chat.
   Future<void> _sendChatMessage(String message) async {
     setState(() {
       _loading = true;
@@ -148,6 +159,8 @@ class _ChatWidgetState extends State<ChatWidget> {
     }
   }
 
+  /// Отображение диалогового окна с ошибкой.
+  /// Displaying a dialog with an error.
   void _showError(String message) {
     showDialog<void>(
       context: context,
