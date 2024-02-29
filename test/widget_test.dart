@@ -1,30 +1,47 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:gemini_chat/main.dart';
+import 'package:gemini_chat/ui/screens/chat_screen.dart';
+import 'package:gemini_chat/ui/screens/widgets/chat_widget.dart'; // Замените на путь к вашему ChatScreen
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const GenerativeAISample());
+  testWidgets('ChatWidget UI Test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: ChatScreen(title: 'Test Title'),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // есть ли ChatWidget в дереве виджетов
+    expect(find.byType(ChatWidget), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // работает ли ввод текста
+    await tester.enterText(find.byType(TextField), 'Test message');
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // тап по кнопке отправки сообщения
+    await tester.tap(find.byType(IconButton), warnIfMissed: false);
+
+    // ждем завершения процесса загрузки
+    await tester.pumpAndSettle();
+
+    // прверили закончилась ли работать прогрессбар
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+
+    // отправилось сообщение?
+    expect(find.text('Test message'), findsOneWidget);
+
+    // еще одно сообщение вводим
+    await tester.enterText(find.byType(TextField), 'Another message');
+
+    // тапаем еще раз
+    await tester.tap(find.byType(IconButton), warnIfMissed: false);
+
+    // снова ждем завершения процесса загрузки
+    await tester.pumpAndSettle();
+
+    // прверили закончилась ли работать прогрессбар
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+
+    // проверям отправилось ли еще одно сообщение
+    expect(find.text('Another message'), findsOneWidget);
   });
 }
