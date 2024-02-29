@@ -1,16 +1,9 @@
-# gemini_chat
+## Тестовое задания для Craft Games
 
-A new Flutter project.
+Мобильный разработчик Flutter, разработка утилит от 50 000 до 100 000 ₽ на руки
+Требуемый опыт работы: 1–3 года\nПолная занятость, удаленная работа
+Возможно временное оформление: договор услуг, подряда, ГПХ, самозанятые, ИП\nВозможна подработка: сменами по 4-6 часов
 
-## Getting Started
+документация https://petrfalkovsky.github.io/gemini_chat/
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+.apk https://drive.google.com/file/d/1sEtAkw4AIpOe6G7noy4O8RB2EgFvUqUl/view?usp=sharing
